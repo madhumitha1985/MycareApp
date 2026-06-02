@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Doctor Connect</title>
+
+<style>
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f2f6ff;
+    padding:20px;
+}
+
+.header{
+    text-align:center;
+    color:#2c7be5;
+    margin-bottom:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 0 10px #ccc;
+    margin-bottom:20px;
+}
+
+.doctor{
+    text-align:center;
+}
+
+.doctor h2{
+    color:#2c7be5;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.call{
+    background:#28a745;
+}
+
+.whatsapp{
+    background:#25D366;
+}
+
+.book{
+    background:#2c7be5;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+<h1>👨‍⚕️ Doctor Connect</h1>
+<p>Contact your doctor instantly</p>
+</div>
+
+<div class="card doctor">
+
+<h2>Dr. Manju</h2>
+
+<p>Heart Specialist</p>
+
+<p>📞 9345286338</p>
+
+<a href="tel:9345286338">
+<button class="call">
+📞 Call Doctor
+</button>
+</a>
+
+<a href="https://wa.me/919345286338" target="_blank">
+<button class="whatsapp">
+💬 WhatsApp Doctor
+</button>
+</a>
+
+</div>
+
+<div class="card">
+
+<h2>📅 Book Appointment</h2>
+
+<input type="text" id="name" placeholder="Patient Name">
+
+<input type="date" id="date">
+
+<input type="time" id="time">
+
+<button class="book" onclick="bookAppointment()">
+Book Appointment
+</button>
+
+</div>
+
+<script>
+
+function bookAppointment(){
+
+let name=document.getElementById("name").value;
+let date=document.getElementById("date").value;
+let time=document.getElementById("time").value;
+
+if(name=="" || date=="" || time==""){
+alert("Fill all fields");
+return;
+}
+
+alert(
+"Appointment Booked Successfully!\n\n"+
+"Patient: "+name+
+"\nDate: "+date+
+"\nTime: "+time
+);
+
+}
+
+</script>
+
+</body>
+</html>
