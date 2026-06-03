@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tablet Scanner</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #f2f6ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .box {
+      background: white;
+      padding: 25px;
+      width: 350px;
+      border-radius: 15px;
+      box-shadow: 0px 0px 10px #ccc;
+      text-align: center;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    button {
+      background: #2c7be5;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1a5fd0;
+    }
+
+    #result {
+      margin-top: 15px;
+      background: #e8f0ff;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="box">
+
+  <h2>📷 Tablet Scanner</h2>
+
+  <!-- TEXT INPUT -->
+  <input type="text" id="tabletName" placeholder="Enter Tablet Name">
+
+  <!-- CAMERA INPUT (mobile works) -->
+  <input type="file" accept="image/*" capture="environment" id="camera">
+
+  <button onclick="scanTablet()">Scan Tablet</button>
+
+  <div id="result"></div>
+
+</div>
+
+<script>
+function scanTablet() {
+
+  let name = document.getElementById("tabletName").value.trim().toLowerCase();
+  let result = document.getElementById("result");
+
+  if(name === "") {
+    result.innerHTML = "⚠️ tablet name enter pannu";
+    return;
+  }
+
+  let data = {
+    "dolo 650": "Paracetamol - fever & pain relief",
+    "paracetamol": "Pain & fever control",
+    "crocin": "Fever reducing tablet",
+    "metformin": "Diabetes control tablet",
+    "amlodipine": "BP control tablet"
+  };
+
+  if(data[name]) {
+    result.innerHTML = `
+      <h3>💊 ${name}</h3>
+      <p>${data[name]}</p>
+    `;
+  } else {
+    result.innerHTML = "❌ data illa. Try Dolo 650 / Crocin / Metformin";
+  }
+
+  // Camera info (simple message)
+  let cam = document.getElementById("camera").files[0];
+  if(cam) {
+    result.innerHTML += "<br><br>📷 Image selected ✔ (real OCR next upgrade)";
+  }
+}
+</script>
+
+</body>
+</html>

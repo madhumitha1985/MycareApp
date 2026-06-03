@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Emergency SOS</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: #111;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    h1 {
+      color: red;
+      font-size: 40px;
+    }
+
+    .sos-btn {
+      background: red;
+      color: white;
+      border: none;
+      padding: 20px 50px;
+      font-size: 22px;
+      border-radius: 15px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .sos-btn:hover {
+      background: darkred;
+    }
+
+    .info {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #ccc;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>🚨 SOS EMERGENCY</h1>
+
+    <button class="sos-btn" onclick="activateSOS()">
+      SEND SOS ALERT
+    </button>
+
+    <div class="info">
+      Click pannina location + alert message open aagum
+    </div>
+  </div>
+
+  <script>
+function activateSOS() {
+
+  let message = "🚨 Emergency! I need help urgently.";
+
+  // First ask location properly
+  if (navigator.geolocation) {
+
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+
+        let lat = position.coords.latitude;
+        let lon = position.coords.longitude;
+
+        // Add location to message
+        let fullMessage =
+          message +
+          "\n📍 Location: https://maps.google.com/?q=" +
+          lat + "," + lon;
+
+        // Open SMS AFTER getting location
+        window.location.href =
+          "sms:108?body=" + encodeURIComponent(fullMessage);
+
+      },
+      function(error) {
+        alert("Location permission denied ❌");
+
+        // fallback SMS without location
+        window.location.href =
+          "sms:108?body=" + encodeURIComponent(message);
+      }
+    );
+
+  } else {
+    alert("Geolocation not supported");
+
+    window.location.href =
+      "sms:108?body=" + encodeURIComponent(message);
+  }
+}
+</script>
+
+</body>
+</html>
